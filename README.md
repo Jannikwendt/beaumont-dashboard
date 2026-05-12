@@ -171,7 +171,7 @@ Design philosophy: *Bloomberg terminal meets a private bank annual report.* Flat
 ## Local development
 
 ```bash
-git clone https://github.com/<your-username>/beaumont-dashboard.git
+git clone https://github.com/Jannikwendt/beaumont-dashboard.git
 cd beaumont-dashboard
 npm install
 npm run dev
