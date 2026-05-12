@@ -1,26 +1,135 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: #14110F;
+  --color-surface: #1C1916;
+  --color-surface-elevated: #221E1A;
+  --color-border: #2B2722;
+  --color-text-primary: #E8E4DE;
+  --color-text-secondary: #8F8A82;
+  --color-text-muted: #5C5751;
+  --color-accent: #E89B43;
+  --color-accent-dim: #6B4A24;
+  --color-pass-green: #4F9E6A;
+  --color-flag-amber: #C68A3B;
+  --color-flag-red: #B5573E;
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html,
+  body {
+    background-color: #14110F;
+    color: #E8E4DE;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Tabular numerals everywhere a number is rendered */
+  .tnum,
+  td,
+  th,
+  [data-num] {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Section anchor offsets — keep the section label below the sticky header. */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* ─── Overlay animations (≤ 250ms, ease-out, no spring) ───────────────── */
+
+@keyframes overlayFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes modalContentIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes panelSlideIn {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes tooltipFadeIn {
+  from { opacity: 0; transform: translateY(-2px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes paletteContentIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(-4px) scale(0.98); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
+}
+
+.overlay-backdrop {
+  animation: overlayFadeIn 200ms ease-out;
+}
+.modal-content {
+  animation: modalContentIn 200ms ease-out;
+}
+.panel-content {
+  animation: panelSlideIn 250ms ease-out;
+}
+.tooltip-content {
+  animation: tooltipFadeIn 150ms ease-out;
+}
+.palette-content {
+  animation: paletteContentIn 200ms ease-out;
+}
+
+/* Hide native scrollbar styling inside overlays where appropriate */
+.overlay-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #2B2722 transparent;
+}
+.overlay-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.overlay-scroll::-webkit-scrollbar-track { background: transparent; }
+.overlay-scroll::-webkit-scrollbar-thumb {
+  background-color: #2B2722;
+  border-radius: 4px;
+}
+
+@media print {
+  html,
+  body {
+    background: #ffffff !important;
+    color: #14110F !important;
+  }
+
+  * {
+    background: transparent !important;
+    color: #14110F !important;
+    border-color: #cccccc !important;
+    box-shadow: none !important;
+  }
+
+  .print-hide {
+    display: none !important;
+  }
+
+  .print-card {
+    border: 1px solid #d9d4cd !important;
+    background: #ffffff !important;
+    page-break-inside: avoid;
+  }
+
+  .print-accent {
+    color: #B5762A !important;
+  }
 }
