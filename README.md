@@ -1,81 +1,89 @@
+<div align="center">
+
+![Beaumont Family Office — One Truth Dashboard](docs/images/00-hero-banner.png)
+
 # Beaumont Family Office — One Truth Dashboard
 
-> *"You don't need another bank. You need an Institution."*
+### *"You don't need another bank. You need an Institution."*
 
-**Live demo:** [beaumont-mfo.vercel.app](https://beaumont-mfo.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-beaumont--mfo.vercel.app-E89B43?style=flat-square&labelColor=14110F)](https://beaumont-mfo.vercel.app)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed-Vercel-black?style=flat-square&logo=vercel&labelColor=14110F)](https://vercel.com)
+[![Next.js 14](https://img.shields.io/badge/Next.js-14-black?style=flat-square&logo=next.js&labelColor=14110F)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&labelColor=14110F)](https://www.typescriptlang.org)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-06B6D4?style=flat-square&logo=tailwindcss&labelColor=14110F)](https://tailwindcss.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-E89B43?style=flat-square&labelColor=14110F)](https://opensource.org/licenses/MIT)
+
+**[→ Open the live dashboard](https://beaumont-mfo.vercel.app)**
 
 A working prototype of a Multi-Family Office consolidation dashboard, built as the central artefact for a 6-minute pitch in the Family Office & Wealth Management course at IE Business School (Master in Finance, May 2026).
 
----
-
-## Table of Contents
-
-1. [Assignment context](#assignment-context)
-2. [The client](#the-client)
-3. [Situation](#situation)
-4. [Complication](#complication)
-5. [Solution — three pillars](#solution--three-pillars)
-6. [What this dashboard does](#what-this-dashboard-does)
-7. [Live demo walkthrough](#live-demo-walkthrough)
-8. [Tech stack](#tech-stack)
-9. [Local development](#local-development)
-10. [Deployment](#deployment)
-11. [Project structure](#project-structure)
-12. [Iteration history](#iteration-history)
-13. [Acknowledgements](#acknowledgements)
-14. [Disclaimer](#disclaimer)
+</div>
 
 ---
 
-## Assignment context
+## See it in action
 
-- **Course:** Family Office & Wealth Management
-- **Program:** Master in Finance, IE Business School
-- **Professor:** Markus Schuller (Panthera Solutions)
-- **Format:** 6-minute pitch + 6-minute Q&A · beauty contest vs. 4 other teams
-- **Team:** Group 02 (4 independent wealth managers presenting as senior leadership of a fictional MFO)
+![Demo flow — click ALLOCATION → click +7.8 deviation pill → see rebalancing plan → scroll to Decision Journal → click REJECTED 1-4 → see Decision GPS audit trail](docs/images/demo.gif)
 
-**Verbatim brief:**
-
-> "You are a team of independent wealth managers, working with family offices on wealth management solutions. Your team is asked to pitch a bespoke Multi-Family Office proposal to a family of old money (AuM EUR 500M), dissatisfied with its current wealth management setting."
+> *Eight seconds. Three clicks. Three reveals. That's the entire pitch's differentiator.*
 
 ---
 
-## The client
+## What you're looking at
 
-The **Beaumont family** — fictional, but plausibly calibrated:
+| | |
+|:---:|:---:|
+| ![Overview](docs/images/01-overview.png) | ![Allocation vs. IPS](docs/images/02-allocation.png) |
+| **€502.4M consolidated across four banks** · Reconciled 11 May 2026, 08:42 CET. Today the Beaumonts have no single view of this. | **Allocation vs. IPS, with deviations flagged in real time** · Real Assets +7.8pp over target, Hedge / Macro −5.9pp under. Europe overweight at 58% triggers the home-bias overlay. |
+| ![Rebalancing plan](docs/images/03-deviation-modal.png) | ![Decision GPS](docs/images/04-decision-gps.png) |
+| **Click any deviation pill** · Root-cause analysis, IC-approved rebalancing plan, link to the related decision journal entry. | **Decision GPS audit trail** · Pre-mortem (3 failure paths), 5-bias check, devil's advocate quote, vote-by-member breakdown. HARKing prevention timestamps. |
+| ![Custody side panel](docs/images/05-custody-panel.png) | ![Command palette](docs/images/06-command-palette.png) |
+| **Drill into any custodian** · Connectivity, mandate type, top positions held, fee breakdown, re-negotiation flags. | **Cmd+K from anywhere** · Search positions, IC decisions, sections, reports, settings. Type "btc" → land on the BTC decision. |
 
-- 19th-century textile and industrial dynasty from Lyon, France
-- Family business sold to a strategic buyer in 1998 for ~€300M
-- Current AuM: €500M, accumulated over 27 years across four private banks
-- Three principals in the room:
-  - **Henri Beaumont** (74) — patriarch, legacy and capital preservation
-  - **Isabelle Beaumont-Laurent** (46) — daughter, operational rigour, runs a mid-cap industrial
-  - **Louis Beaumont** (24) — grandson, NextGen, just finished his master's
+---
+
+## Three-pillar solution architecture
+
+```mermaid
+%%{init: {'theme': 'dark', 'themeVariables': {'primaryColor': '#E89B43', 'primaryTextColor': '#E8E4DE', 'primaryBorderColor': '#E89B43', 'lineColor': '#5C5751', 'tertiaryColor': '#1C1916'}}}%%
+graph TB
+    A[BEAUMONT FAMILY OFFICE]
+    A --> B[01 · CONSOLIDATE]
+    A --> C[02 · GOVERN]
+    A --> D[03 · OPTIMIZE]
+    B --> B1[One Truth Dashboard]
+    B --> B2[4-Bank Aggregation]
+    B --> B3[Daily Reconciliation]
+    C --> C1[Family Vision]
+    C --> C2[Family Constitution]
+    C --> C3[Investment Policy Statement]
+    C --> C4[Investment Committee]
+    D --> D1[Endowment-Style Allocation]
+    D --> D2[Decision GPS Overlay]
+    D --> D3[35 bps Flat Fee]
+```
 
 ---
 
 ## Situation
 
-The Beaumonts currently bank across **four jurisdictions** — Switzerland (Pictet Geneva), France (Rothschild Paris), Luxembourg (Quintet), and Monaco (CMB). Six numbers describe today:
+The Beaumonts — a fictional French old-money family — bank across **four jurisdictions** with no consolidated view. Six numbers describe today:
 
 | Number | What it tells us |
 |---|---|
 | **4** | private banks, no consolidated view |
-| **1.4%** | all-in cost · ~€7M / year (Capgemini WWR 2024 mid-range) |
+| **1.4%** | all-in cost · ~€7M / year (Capgemini WWR 2024) |
 | **4.2%** | 10-year net return vs. 6.5% on a passive 60/40 (Bloomberg) |
 | **0** | IPS · 0 IC · 0 Family Constitution |
-| **70%** | of UHNW family wealth transitions fail by G3 (Williams & Preisser 2003) |
+| **70%** | of UHNW family wealth transitions fail by G3 (Williams & Preisser, 2003) |
 | **1** | health scare from succession chaos |
-
----
 
 ## Complication
 
 It is not a portfolio problem. It is a **governance problem**.
 
 - **The 2.3pp performance gap** = ~€11.5M / year of foregone return, compounded over a 30-year horizon
-- **The 2023 silent migration** — a bank merger quietly wrapped the family's mandate into a fund-of-funds; nobody noticed
+- **The 2023 silent migration** — a bank merger quietly wrapped the family's mandate into a fund-of-funds
 - **The retired RM** — Henri's 40-year Geneva relationship replaced by a junior in late 2025
 - **The trigger** — Henri's early-2026 health scare exposes the absence of a succession plan
 
@@ -83,88 +91,86 @@ Henri has no succession plan. Isabelle has no consolidated view. Louis has no se
 
 That is not a portfolio. That is an institution that does not exist yet.
 
----
-
-## Solution — three pillars
+## Solution
 
 ### 01 · Consolidate
-Aggregate all four custodians into a single operating picture. One report. One number. One point of accountability. **This dashboard is the proof.**
+Aggregate all four custodians into a single operating picture. **This dashboard is the proof.**
 
 ### 02 · Govern
-Build the institution the family never had:
-- **Family Vision** — workshop with all three generations: why does this wealth exist?
-- **Family Constitution** — written charter: values, decision rights, succession protocols
-- **Investment Policy Statement** — 30-year horizon, signed by every principal
-- **Investment Committee** — quarterly, sovereign, with an external chair
+Family Vision → Family Constitution → Investment Policy Statement → Investment Committee.
 
 ### 03 · Optimize
 Endowment-style allocation (35 / 20 / 15 / 15 / 10 / 5) with **Decision GPS** behavioural overlay on every IC vote:
-- **Pre-mortem** — failure paths surfaced before the vote
-- **Bias check** — home, recency, anchoring, familiarity, overconfidence
-- **Devil's advocate** — rotating member mandate to argue the opposite case
-- **Decision journal** — rationale logged before outcome is known (HARKing prevention)
+
+```mermaid
+%%{init: {'theme': 'dark', 'themeVariables': {'primaryColor': '#E89B43', 'primaryTextColor': '#E8E4DE', 'primaryBorderColor': '#E89B43', 'lineColor': '#5C5751'}}}%%
+flowchart LR
+    A[Proposal] --> B[Pre-Mortem<br/>failure paths]
+    B --> C[Bias Check<br/>5-bias scan]
+    C --> D[Devil's Advocate<br/>rotating member]
+    D --> E[Vote<br/>by IC member]
+    E --> F[Journal<br/>logged pre-outcome]
+    F --> G[Quarterly Review]
+    G -.feedback loop.-> A
+```
 
 ### The economics
 - Today: **1.40% all-in** = €7M / year
-- With us: **0.60% all-in** = €3M / year (35bps MFO + institutional share classes + zero retrocessions)
+- With us: **0.60% all-in** = €3M / year
 - **€4M annual fee saving + €11.5M performance gap closure = €15.5M annual upside**
 
 ### The ask
-We do **not** ask the family to move money. We ask for one quarter:
-- **90-day audit** at a fixed fee of €120k
-- **Two half-day family workshops** (Vision · Values · Decision Rights)
-- **Decision point on day 90** — full transparency on what they own, regardless of whether they retain us
+Not to move money. **One quarter:** 90-day audit at €120k fixed · two family workshops · decision point on day 90.
 
 ---
 
-## What this dashboard does
+## Data flow
 
-The "One Truth Dashboard" is the **artefact** that demonstrates Pillar 01 in 25 seconds of live demo. Other teams will *claim* consolidation. This one *shows* it.
-
-Sections, top to bottom:
-
-1. **Hero strip** — €502.4M total NAV, +6.8% 12-mo return, 0.32% all-in fee, 4/4 custodians reconciled
-2. **Section 01 · Consolidated Custody View** — four bank cards, each clickable to a side panel with connectivity, mandate type, top 5 positions held, fee breakdown
-3. **Section 02 · Allocation vs. IPS** — 6 asset classes with deviation bars; out-of-band sleeves flagged in red, click any pill for the rebalancing plan; geographic donut with home-bias breach alert
-4. **Section 03 · Risk Dashboard** — volatility / drawdown / concentration / liquidity vs. IPS caps; top-10 single-line table (clickable to instrument-level detail); currency exposure; 12-month performance vs. 60/40
-5. **Section 04 · Liquidity ladder & reporting cadence** — 5 liquidity buckets, 3 cadence rows
-6. **Section 05 · IC Decision Journal** — last 3 IC decisions. Click any row to expand the full Decision GPS audit trail: pre-mortem checklist, 5-bias check, devil's-advocate quote, vote-by-member breakdown, HARKing-prevention timestamp
-
-Interactivity:
-- Every KPI number has a **source-citation tooltip** on hover (Capgemini, Bloomberg, methodology notes)
-- The **IPS V1.2 pill** opens the full Investment Policy Statement (objectives, risk limits, allocation ranges, liquidity rules, exclusions, governance)
-- The **REPORTS tab** opens the quarterly report archive
-- **Cmd+K / Ctrl+K** opens a command palette to jump to any position, decision, section, or report
-- **Print-to-PDF** produces a clean light-background export for the IC pack
+```mermaid
+%%{init: {'theme': 'dark', 'themeVariables': {'primaryColor': '#E89B43', 'primaryTextColor': '#E8E4DE', 'primaryBorderColor': '#E89B43', 'lineColor': '#5C5751', 'tertiaryColor': '#1C1916'}}}%%
+flowchart LR
+    P[Pictet Geneva] --> AGG[Aggregation Layer]
+    R[Rothschild Paris] --> AGG
+    Q[Quintet Luxembourg] --> AGG
+    M[CMB Monaco] --> AGG
+    AGG --> DASH[One Truth Dashboard]
+    DASH --> IC[Investment Committee]
+    IC --> GPS[Decision GPS]
+    GPS --> JOURNAL[Decision Journal]
+    JOURNAL -.audit.-> DASH
+```
 
 ---
 
-## Live demo walkthrough
+## Live demo
 
-The 25-second Speaker 2 sequence:
+**[beaumont-mfo.vercel.app](https://beaumont-mfo.vercel.app)** · fully public, no login
 
-1. **Land** on `/` — €502.4M renders in under 500ms
-2. **Click `ALLOCATION` tab** → smooth-scroll to Section 02
-3. **Click the red `+7.8` Real Assets pill** → modal showing the rebalancing plan (€30M Lyon SCPI reduction approved at IC #14)
-4. **Close**, scroll to Section 05
-5. **Click the `REJECTED 1-4` decision** → 4-panel inline expansion: pre-mortem (3 failure paths), bias check (HOME BIAS flagged), devil's-advocate quote from the external IC chair, vote breakdown by member with rationale
-6. Speaker 2 points at the audit-trail footer: *"pre-vote rationale logged at 09:14 CET, outcome logged at 11:47 CET — HARKing prevention: PASSED."*
+The 25-second Speaker 2 demo sequence:
 
-That sequence is the entire pitch's differentiator in one screen.
+1. Land on `/` — sync animation reconciles four banks in 2 seconds
+2. Click `ALLOCATION` tab → smooth-scroll
+3. Click the red `+7.8` Real Assets pill → rebalancing plan modal
+4. Close, scroll to Section 05
+5. Click `REJECTED 1-4` → Decision GPS audit trail unfolds inline
+6. Point at the audit-trail footer: *"pre-vote rationale logged at 09:14 CET, outcome logged at 11:47 CET — HARKing prevention: PASSED."*
 
 ---
 
 ## Tech stack
 
-- **[Next.js 14](https://nextjs.org)** (App Router) + TypeScript
-- **[Tailwind CSS](https://tailwindcss.com)** v4 with custom design tokens
-- **[Recharts](https://recharts.org)** for the donut and performance chart
-- **[Radix UI](https://www.radix-ui.com)** primitives (Dialog, Tooltip) for accessibility (focus trap, ESC, scroll lock)
-- **[Vercel](https://vercel.com)** for deployment
-- **Inter** (via `next/font/google`) — only font used
-- No icon library, no UI kit — every visual built with Tailwind + SVG
+| Layer | Choice | Why |
+|---|---|---|
+| Framework | Next.js 14 (App Router) | Static prerender, no backend needed |
+| Language | TypeScript | Self-documenting numbers |
+| Styles | Tailwind CSS v4 | Custom design tokens, no UI kit overhead |
+| Charts | Recharts | One donut, one line chart, both minimal |
+| Overlays | Radix UI primitives | Focus trap, ESC, scroll lock — accessibility for free |
+| QR | qrcode | Client-side QR generation |
+| Hosting | Vercel | One command, public URL |
+| Font | Inter (next/font/google) | Only font used |
 
-Design philosophy: *Bloomberg terminal meets a private bank annual report.* Flat, dense, calm, expensive-looking. No gradients (except progress bars). No drop shadows. No rounded-lg.
+**Design philosophy:** *Bloomberg terminal meets a private bank annual report.* Flat. Dense. Calm. Expensive. No emojis. No gradients (except progress bars). No rounded-lg.
 
 ---
 
@@ -175,34 +181,17 @@ git clone https://github.com/Jannikwendt/beaumont-dashboard.git
 cd beaumont-dashboard
 npm install
 npm run dev
+# → http://localhost:3000
 ```
 
-Open http://localhost:3000.
-
-Available scripts:
-- `npm run dev` — local dev server with hot reload
-- `npm run build` — production build (static prerender)
-- `npm run start` — serve the production build
-- `npx tsc --noEmit` — type check
-- `npm run lint` — ESLint
-
----
-
-## Deployment
-
-The dashboard deploys to Vercel:
-
-```bash
-npm i -g vercel
-vercel --prod
-```
-
-The project is already linked (see `.vercel/`). Subsequent deploys are one command. Custom alias is wired up:
-
-- Production: **[beaumont-mfo.vercel.app](https://beaumont-mfo.vercel.app)**
-- Auto: [beaumont-dashboard.vercel.app](https://beaumont-dashboard.vercel.app)
-
-Vercel Deployment Protection is **disabled** on this project to keep the demo URL fully public.
+| Script | What it does |
+|---|---|
+| `npm run dev` | Local dev server with hot reload |
+| `npm run build` | Production build (static prerender) |
+| `npm run start` | Serve the production build |
+| `npm run lint` | ESLint |
+| `npx tsc --noEmit` | Type check |
+| `npm run screenshots:dev` | Regenerate the 7 README screenshots via Playwright |
 
 ---
 
@@ -210,68 +199,55 @@ Vercel Deployment Protection is **disabled** on this project to keep the demo UR
 
 ```
 beaumont-dashboard/
-├── app/
-│   ├── layout.tsx              # Inter font, dark theme, metadata
-│   ├── page.tsx                # Composes all sections inside <OverlayProvider>
-│   └── globals.css             # Tailwind v4 tokens + tabular-nums + print rules
+├── app/                     # Next.js App Router
+│   ├── layout.tsx           # Inter font, OG metadata, favicon
+│   ├── page.tsx             # Composes all sections inside <OverlayProvider>
+│   └── globals.css          # Tailwind v4 tokens + tabular-nums + print + pulse keyframes
 ├── components/
-│   ├── Header.tsx              # Brand + reporting period
-│   ├── Tabs.tsx                # Decorative tabs (now scroll anchors)
-│   ├── Hero.tsx                # Four KPIs with tooltips
-│   ├── CustodyView.tsx         # Section 01 · clickable bank cards
-│   ├── Allocation.tsx          # Section 02 · deviation bars + IPS modal trigger
-│   ├── Geographic.tsx          # Donut + home-bias flag
-│   ├── RiskMetrics.tsx         # Section 03 · 4 KPI cards
-│   ├── Concentrations.tsx      # Top-10 table · row → side panel
-│   ├── Currency.tsx            # FX bars
-│   ├── PerformanceChart.tsx    # 12-mo line chart
-│   ├── LiquidityLadder.tsx     # Section 04 left
-│   ├── ReportingCadence.tsx    # Section 04 right
-│   ├── DecisionJournal.tsx     # Section 05 · expandable IC decisions
+│   ├── Header.tsx           # Brand + reporting period
+│   ├── Tabs.tsx             # Scroll-anchor tabs with active-section observer
+│   ├── Hero.tsx             # 4 KPIs with source-citation tooltips
+│   ├── CustodyView.tsx      # Section 01 · click → side panel + sync animation
+│   ├── Allocation.tsx       # Section 02 · deviation bars + IPS modal trigger
+│   ├── Geographic.tsx       # Donut + pulsing amber home-bias flag
+│   ├── RiskMetrics.tsx      # Section 03 · 4 KPI cards
+│   ├── Concentrations.tsx   # Top-10 table · row → instrument side panel
+│   ├── Currency.tsx         # FX bars
+│   ├── PerformanceChart.tsx # 12-mo line chart
+│   ├── LiquidityLadder.tsx  # Section 04 left
+│   ├── ReportingCadence.tsx # Section 04 right
+│   ├── DecisionJournal.tsx  # Section 05 · expandable IC decisions with Decision GPS
 │   ├── Footer.tsx
-│   ├── SectionLabel.tsx        # Shared "NN · TITLE" label
-│   └── overlays/
-│       ├── OverlayProvider.tsx # React Context for modal/panel/expansion state
-│       ├── Modal.tsx           # Radix Dialog wrapper
-│       ├── SidePanel.tsx       # 480px right-anchored Radix Dialog
-│       ├── Tooltip.tsx         # Radix Tooltip wrapper
-│       └── CommandPalette.tsx  # Cmd+K palette
+│   ├── SectionLabel.tsx     # Shared "NN · TITLE" label component
+│   ├── overlays/            # Modal, SidePanel, Tooltip, CommandPalette primitives
+│   └── onboarding/          # GuidedTour, HelpButton, ShareModal, InvitationCard
 ├── lib/
-│   └── data.ts                 # ALL dashboard numbers as typed constants
-├── public/
-└── ...standard Next.js files
+│   └── data.ts              # Every number on the page — single source of truth
+├── scripts/
+│   └── capture-screenshots.ts  # Playwright script that regenerates docs/images/
+├── docs/
+│   ├── CAPTURE_GIF.md       # How to record the demo GIF
+│   └── images/              # All README assets
+└── public/                  # favicon, og-card, etc.
 ```
-
-Every number on the page lives in `lib/data.ts`. To tweak a metric, edit one file.
 
 ---
 
 ## Iteration history
 
-### v1 — Static prototype
-Layout, design system, all data hard-coded, read-only. Goal: prove the visual quality bar.
-
-### v2 — Interactive overlays (current)
-- Clickable custody cards → side panel (connectivity, mandate, top positions)
-- Clickable concentration rows → instrument detail panel
-- Clickable allocation deviation pills → rebalancing-plan modal
-- IPS V1.2 pill → full IPS modal
-- REPORTS tab → quarterly report archive
-- Decision Journal rows → inline expansion with full Decision GPS view (pre-mortem, bias check, devil's advocate, vote breakdown)
-- Source-citation tooltips on every KPI
-- Cmd+K command palette
-- Smooth-scroll tab navigation with active-tab tracking
-
-### v3 — Planned
-- `+ New IC Decision` floating action: 4-step wizard that walks through Decision GPS for a hypothetical new vote (pre-mortem → bias check → devil's advocate → journal). Answers the Q&A objection: *"what happens for the next decision?"*
-- Period selector (Q4 2025 / Q1 2026 / Q2 2026) with continuity-of-history demo
-- QR code on print export linking back to the live dashboard
+| Version | Focus | Highlights |
+|---|---|---|
+| **v1** | Static prototype | Layout, design tokens, hard-coded data — set the visual quality bar |
+| **v2** | Interactive overlays | Modals, side panels, Decision Journal expansion, Cmd+K, source tooltips |
+| **v3** | Self-explaining UX | Sync animation, pulse flags, guided tour, help button, share modal, OG card |
+| **v4** | Repo-as-brochure | Auto-screenshots, demo GIF, Mermaid diagrams, restructured README |
+| **v5** *(planned)* | Decision GPS wizard | `+ New IC Decision` 4-step flow for hypothetical votes |
 
 ---
 
 ## Acknowledgements
 
-- **Prof. Markus Schuller** (Panthera Solutions) — Decision GPS framework, Generation-3 portfolio thinking, the entire course
+- **Prof. Markus Schuller** (Panthera Solutions) — Decision GPS framework, Generation-3 portfolio thinking
 - **Williams & Preisser** (2003) — 70% G3 wealth-transition failure statistic
 - **Brinson, Hood & Beebower** (1986 / 1991) — 90% of long-term performance variability from strategic asset allocation
 - **Capgemini World Wealth Report 2024** — UHNW European fee benchmarks
@@ -285,4 +261,12 @@ The Beaumont family, their wealth, the four custodian banks, the positions, the 
 
 ---
 
-**MIT License** — do whatever you want with the code. Attribution appreciated but not required.
+<div align="center">
+
+**MIT License** · do whatever you want with the code · attribution appreciated but not required
+
+**[→ Open the live dashboard](https://beaumont-mfo.vercel.app)**
+
+*One family. One institution. Thirty years of clarity.*
+
+</div>
